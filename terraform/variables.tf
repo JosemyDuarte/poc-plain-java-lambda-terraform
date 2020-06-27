@@ -17,11 +17,11 @@ variable "lambda_runtime" {
 }
 
 variable "lambda_function_name" {
-  default = "PlainJavaHelloWorld"
+  default = "PlainGameScore"
 }
 
 variable "api_path" {
-  default = "plainhelloworld"
+  default = "game"
 }
 
 variable "hello_world_http_method" {

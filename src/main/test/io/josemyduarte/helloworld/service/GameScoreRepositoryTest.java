@@ -1,7 +1,7 @@
 package io.josemyduarte.helloworld.service;
 
 
-import io.josemyduarte.helloworld.view.GameScore;
+import io.josemyduarte.helloworld.view.DynamoGameScore;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,7 @@ public class GameScoreRepositoryTest {
     @Before
     public void setUp() {
         gameScoreRepository = new GameScoreRepository();
-        gameScoreRepository.save(GameScore.builder()
+        gameScoreRepository.save(DynamoGameScore.builder()
                 .userId(USER_ID)
                 .gameTitle(GAME_TITLE)
                 .topScore(TOP_SCORE)
@@ -30,14 +30,14 @@ public class GameScoreRepositoryTest {
 
     @After
     public void tearDown() {
-        gameScoreRepository.delete(GameScore.builder()
+        gameScoreRepository.delete(DynamoGameScore.builder()
                 .userId(USER_ID)
                 .build());
     }
 
     @Test
     public void find() {
-        Optional<GameScore> optionalGameScore = gameScoreRepository.find(USER_ID);
+        Optional<DynamoGameScore> optionalGameScore = gameScoreRepository.find(USER_ID);
         assertTrue(optionalGameScore.isPresent());
         assertEquals(GAME_TITLE, optionalGameScore.get().getGameTitle());
         assertEquals(TOP_SCORE, optionalGameScore.get().getTopScore());

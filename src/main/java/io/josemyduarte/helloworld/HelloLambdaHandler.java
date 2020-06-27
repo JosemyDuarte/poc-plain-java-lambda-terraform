@@ -3,20 +3,17 @@ package io.josemyduarte.helloworld;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import io.josemyduarte.helloworld.service.ProcessingService;
-import io.josemyduarte.helloworld.view.InputObject;
-import io.josemyduarte.helloworld.view.OutputObject;
+import io.josemyduarte.helloworld.service.GameScoreRepository;
+import io.josemyduarte.helloworld.view.DynamoGameScore;
+import io.josemyduarte.helloworld.view.GameScoreRequest;
 
-public class HelloLambdaHandler implements RequestHandler<InputObject, OutputObject> {
+import java.util.NoSuchElementException;
 
-    private final ProcessingService service;
+public class HelloLambdaHandler implements RequestHandler<GameScoreRequest, DynamoGameScore> {
 
-    public HelloLambdaHandler() {
-        this.service = new ProcessingService();
-    }
-
-    public OutputObject handleRequest(InputObject input, Context context) {
+    public DynamoGameScore handleRequest(GameScoreRequest input, Context context) {
         System.out.println(input);
-        return service.process(input).setRequestId(context.getAwsRequestId());
+        final GameScoreRepository repository = new GameScoreRepository();
+        return repository.find(input.getUserId()).orElseThrow(NoSuchElementException::new);
     }
 }

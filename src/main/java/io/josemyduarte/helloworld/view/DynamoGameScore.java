@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @DynamoDBTable(tableName = "GameScores")
-public class GameScore {
+public class DynamoGameScore {
     @DynamoDBHashKey(attributeName = "userId")
     private String userId;
     @DynamoDBAttribute(attributeName = "gameTitle")

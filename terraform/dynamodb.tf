@@ -1,3 +1,16 @@
+resource "aws_dynamodb_table_item" "demo-dynamodb-item" {
+  table_name = aws_dynamodb_table.demo-dynamodb-table.name
+  hash_key = aws_dynamodb_table.demo-dynamodb-table.hash_key
+
+  item = <<ITEM
+{
+  "userId": {"S": "SomeUserId"},
+  "gameTitle": {"S": "Battlefield"},
+  "topScore": {"N": "9"}
+}
+ITEM
+}
+
 resource "aws_dynamodb_table" "demo-dynamodb-table" {
   name = "GameScores"
   billing_mode = "PROVISIONED"
