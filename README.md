@@ -24,7 +24,7 @@ account_id = "<<your AWS account id>>"
 ```
 
 From the root of the project run the ```build_and_deploy.sh``` script.
-This compiles the Java application into the ```helloworld/target``` directory
+This compiles the Java application into the ```target``` directory
 and runs Terraform to upload and configure the Lambda function and API Gateway.
 
 ```
@@ -37,13 +37,13 @@ After a successful run, something similar to the output below should be visible:
 ```
 Outputs:
 
-curl = curl -H 'Content-Type: application/json' -X POST -d '{"name": "Daniel"}' https://XXXXXXXXXX.execute-api.eu-west-1.amazonaws.com/beta/helloworld
+curl = curl -H 'Content-Type: application/json' -X POST -d '{"userId": "SomeUserId"}' https://XXXXXXXXXX.execute-api.eu-west-2.amazonaws.com/beta/plaingame
 ```
 To test your Lambda deployed behind the API Gateway all you need to do is
 copy/paste the curl command (minus the ```curl = ``` part) e.g.
 
 ```
-curl -H 'Content-Type: application/json' -X POST -d '{"name": "Daniel"}' https://XXXXXXXXXX.execute-api.eu-west-1.amazonaws.com/beta/helloworld
+curl = curl -H 'Content-Type: application/json' -X POST -d '{"userId": "SomeUserId"}' https://XXXXXXXXXX.execute-api.eu-west-2.amazonaws.com/beta/plaingame
 ```
 
 ## Rinse and repeat
