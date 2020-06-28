@@ -21,7 +21,7 @@ variable "lambda_function_name" {
 }
 
 variable "api_path" {
-  default = "game"
+  default = "plaingame"
 }
 
 variable "hello_world_http_method" {
